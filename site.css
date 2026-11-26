@@ -61,7 +61,7 @@ h3, .h3 { margin: 0; font-size: clamp(21px, 1.8vw, 26px); line-height: 1.2; lett
 .site-head__row { height: 72px; display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
 .brand { display: flex; align-items: center; min-height: 44px; gap: 10px; text-decoration: none; color: var(--lune-teal); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
 .brand:hover { color: var(--lune-teal); text-decoration: none; }
-.brand i { width: 28px; height: 28px; border-radius: 50%; background: var(--lune-teal); box-shadow: inset -7px 0 0 var(--lune-emerald); }
+.brand img { display: block; height: 28px; width: auto; }
 .site-nav { display: flex; gap: clamp(16px, 2.2vw, 30px); font-size: 15px; font-weight: 500; }
 .site-nav a { color: var(--neutral-600); text-decoration: none; padding: 12px 0; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--lune-teal); }
