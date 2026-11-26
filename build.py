@@ -452,13 +452,13 @@ def aiq(q, a, extra):
 
 
 AI_QS = ('<div class="cols cols--2 aiqs">'
-    + aiq("How much did I spend on shopping this month?", "You spent AED 1,840 on shopping this month.",
-          M.ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00") + M.ai_tx("zara.png", "Zara", "Shopping › Clothing", "AED 445.00"))
+    + aiq("How much money came in this month?", "AED 18,400 came in this month. AED 12,950 went out.",
+          '<div class="ai__cmp"><span>Money in</span><i style="--w:100%"></i><b>AED 18,400</b><span>Money out</span><i class="is-old" style="--w:70%"></i><b>AED 12,950</b></div>')
     + aiq("Where do I spend the most?", "Your top two merchants this month:",
           M.ai_tx("carrefour.png", "Carrefour", "Groceries › Supermarkets", "AED 1,240.00") + M.ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00"))
     + aiq("Did I spend more than last month?", "No. You spent AED 187 less than last month.",
           '<div class="ai__cmp"><span>This month</span><i style="--w:97%"></i><b>AED 6,808</b><span>Last month</span><i class="is-old" style="--w:100%"></i><b>AED 6,995</b></div>')
-    + aiq("Are there offers for me?", "Yes. You spent AED 1,032 at Level Shoes this month.",
+    + aiq("Are there offers for me?", "Yes. One offer matches your spend at Level Shoes.",
           M.ai_offer('<span class="ai__btn">Activate offer</span>'))
     + '</div><p class="small">Illustrations of the assistant with sample data.</p>')
 AI_CARDS = ('<div class="cols cols--4">'
@@ -467,7 +467,7 @@ AI_CARDS = ('<div class="cols cols--4">'
     + card("", "Offers you approve", "The assistant shows Pulse offers. Your bank approves each offer.")
     + card("", "Merchant-funded rewards", "The merchant funds each reward. Your bank uses no rewards budget.")
     + '</div>')
-AI_H1 = 'Customers ask about their money. <span class="serif">The assistant answers.</span>'
+AI_H1 = 'Customers ask about their money. <span class="serif serif--keep">The assistant answers.</span>'
 AI_H2 = 'Each question gets an answer <span class="serif">from real payments.</span>'
 
 AI = f"""{hero("AI assistant", AI_H1,

@@ -362,9 +362,9 @@ html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary
 .ai__a { justify-self: start; background: var(--neutral-50); color: var(--lune-teal); border-bottom-left-radius: 5px; }
 .ai__tx { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid var(--neutral-100); border-radius: 12px; background: #fff; font-size: 13px; }
 .ai__tx img { width: 30px; height: 30px; border-radius: 8px; object-fit: contain; border: 1px solid var(--neutral-100); }
-.ai__tx span { display: grid; min-width: 0; } .ai__tx em { font-style: normal; font-size: 11.5px; color: var(--neutral-500); } .ai__tx > b { font-variant-numeric: tabular-nums; }
+.ai__tx span { display: grid; min-width: 0; } .ai__tx em { font-style: normal; font-size: 12.5px; color: var(--neutral-500); } .ai__tx > b { font-variant-numeric: tabular-nums; }
 .ai__offer { display: grid; gap: 2px; padding: 12px; border-radius: 14px; background: var(--lune-ink); color: #fff; }
-.ai__offer > span:first-child { font-size: 11.5px; color: #B8B2C4; font-weight: 600; } .ai__offer > b { font-size: 19px; color: var(--lune-mint); letter-spacing: -.02em; } .ai__offer em { font-style: normal; font-size: 12.5px; color: #C9C4D6; }
+.ai__offer > span:first-child { font-size: 12.5px; color: #B8B2C4; font-weight: 600; } .ai__offer > b { font-size: 19px; color: var(--lune-mint); letter-spacing: -.02em; } .ai__offer em { font-style: normal; font-size: 13px; color: #C9C4D6; }
 .ai__btns { display: grid; margin-top: 8px; } .ai__btns > * { grid-area: 1 / 1; }
 .ai__btn { display: grid; place-items: center; min-height: 34px; border-radius: 999px; background: #fff; color: var(--lune-ink); font-size: 13px; font-weight: 600; margin-top: 8px; }
 .ai__btns .ai__btn { margin-top: 0; } .ai__btn--done { background: var(--lune-mint); }
@@ -375,3 +375,7 @@ html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary
 .aiq .ai__q, .aiq .ai__a { font-size: 15px; } .aiq .ai__a { background: #fff; }
 .ai__cmp { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 12px; align-items: center; padding: 12px; border-radius: 12px; background: #fff; font-size: 13px; }
 .ai__cmp i { height: 10px; width: var(--w); border-radius: 99px; background: var(--lune-emerald); } .ai__cmp i.is-old { background: var(--neutral-200); } .ai__cmp b { font-variant-numeric: tabular-nums; }
+/* Polish after critique: rows in an example card have no second frame, larger chat text in the cards, headline phrase stays on one line. */
+.aiq .ai__tx, .aiq .ai__cmp { border: 0; font-size: 14px; } .aiq .ai__tx em { font-size: 13px; }
+.aiq .ai__btn { cursor: default; }
+.serif--keep { display: inline-block; }

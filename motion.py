@@ -184,7 +184,7 @@ def ai_offer(btn, at=""):
 AI_CHAT = anim("chat", 1, "900,1300,1300,1500,1300,3200", (
     '<div class="ph ph--chat"><div class="ph__top"><b>Assistant</b><span>Expenses</span></div>'
     '<p class="ai__q" data-at="0">How much did I spend on shopping this month?</p>'
-    '<p class="ai__a" data-at="1">You spent AED 1,840 on shopping this month.</p>'
+    '<p class="ai__a" data-at="1">You spent AED 1,477 on shopping this month.</p>'
     + ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00", ' data-at="2"')
     + ai_tx("zara.png", "Zara", "Shopping › Clothing", "AED 445.00", ' data-at="2"')
     + ai_offer('<span class="ai__btns"><span class="ai__btn" data-at="3" data-until="4">Activate offer</span><span class="ai__btn ai__btn--done" data-at="4">Offer activated ✓</span></span>', ' data-at="3"')
