@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expenses | Spending screens for your app | Lune</title>
+<meta name="description" content="Expenses adds ready spending screens to your iOS and Android app.">
+<link rel="stylesheet" href="ds/tokens/fonts.css">
+<link rel="stylesheet" href="ds/tokens/colors.css">
+<link rel="stylesheet" href="ds/tokens/typography.css">
+<link rel="stylesheet" href="ds/tokens/spacing.css">
+<link rel="stylesheet" href="ds/tokens/base.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="motion.css">
+<script>(function(){var d=document.documentElement,h='a';try{h=new URLSearchParams(location.search).get('hero')||localStorage.getItem('lune-hero')||'a'}catch(e){}d.dataset.hero=/^[abc]$/.test(h)?h:'a';var b='ink';try{b=new URLSearchParams(location.search).get('btn')||localStorage.getItem('lune-btn')||'ink'}catch(e){}d.dataset.btn=/^(ink|emerald|lime|coral)$/.test(b)?b:'ink';d.classList.add('js')})()</script>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap site-head__row">
+    <a class="brand" href="index.html"><i></i>Lune</a>
+    <nav class="site-nav" id="site-nav" aria-label="Main"><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html" aria-current="page">Expenses</a><a href="cashflow.html">Cashflow</a><a href="pulse.html">Pulse</a><a href="customers.html">Customers</a></nav>
+    <div class="site-head__end">
+      <a class="login" href="https://lunehub.lunedata.io/auth/login">Log in</a>
+      <a class="btn btn--dark btn--sm" href="contact.html">Talk to us</a>
+      <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">≡</button>
+    </div>
+  </div>
+</header>
+<main>
+<section class="hero"><div class="wrap hero__grid">
+  <div class="hero__copy"><h1 class="h1--page">Show customers where <span class="serif">their money goes.</span></h1><p class="lead">Expenses adds ready spending screens to your iOS and Android app. Customers see spend by category and merchant, with real merchant names.</p><div class="btns"><a class="btn btn--primary" href="contact.html">Talk to us</a><a class="btn btn--ghost" href="https://docs.lunedata.io/pfm-sdk/" target="_blank" rel="noopener">SDK docs ↗</a></div></div>
+  <figure class="stage stage--solo" data-anim-key="expenses-page" data-default="2">
+<div class="stage__top"><span class="shot__bar">Expenses · SDK for your app</span></div>
+<div class="stage__body" role="img" aria-label="Animation: card descriptions become a spending view with merchant names and categories"><div class="anim anim--phone" data-v="1" data-steps="1200,1000,1000,1000,1400,2800" data-rest="5" aria-hidden="true"><div class="ph"><div class="ph__top"><b>Expenses</b><span>This month</span></div><div class="ph__total"><span>Total spent</span><b>AED <span data-count="1501.29" data-at="1">0.00</span></b></div><div class="dr" data-at="1"><code class="dr__raw">POS PUR 448812 LVL SHS DXB MALL 00AE</code><span class="dr__out"><img src="img/logos/levelshoes.png" alt=""><span><b data-scramble>Level Shoes</b><i>Shopping › Clothing</i></span></span><em class="dr__amt">AED 1,032.00</em></div><div class="dr" data-at="2"><code class="dr__raw">MAF HYPMKT MOE-0042 DXB ARE</code><span class="dr__out"><img src="img/logos/carrefour.png" alt=""><span><b data-scramble>Carrefour</b><i>Groceries › Supermarket</i></span></span><em class="dr__amt">AED 412.30</em></div><div class="dr" data-at="3"><code class="dr__raw">NF* 8665797172 LOS GATOS 00012</code><span class="dr__out"><img src="img/logos/netflix.png" alt=""><span><b data-scramble>Netflix</b><i>Entertainment › Movie Streaming</i></span></span><em class="dr__amt">AED 56.99</em></div><div class="ph__cats" data-at="4"><i style="--w:69%;--c:var(--cat-shopping)"></i><i style="--w:27%;--c:var(--cat-grocery)"></i><i style="--w:4%;--c:#A594F9"></i></div><div class="ph__legend" data-at="4"><span style="--c:var(--cat-shopping)">Shopping</span><span style="--c:var(--cat-grocery)">Groceries</span><span style="--c:#A594F9">Entertainment</span></div></div></div></div>
+<figcaption>Animation with sample data.</figcaption></figure>
+</div></section>
+
+<section class="sec sec--white"><div class="wrap stack">
+<div class="head"><h2>Payments show real merchant names and categories.</h2></div>
+<div class="phones" style="max-width:980px">
+<figure class="phone"><img src="img/app/exp-home.png" alt="This month screen" loading="lazy"><figcaption><b>This month</b><span>Spending day by day, against last month.</span></figcaption></figure>
+<figure class="phone"><img src="img/app/exp-all.png" alt="Every transaction screen" loading="lazy"><figcaption><b>Every transaction</b><span>Search by merchant, category or amount.</span></figcaption></figure>
+<figure class="phone"><img src="img/app/exp-tx.png" alt="Transaction detail screen" loading="lazy"><figcaption><b>Transaction detail</b><span>Merchant, category and card.</span></figcaption></figure>
+</div><p class="small">Screens from the Lune SDK with sample data.</p>
+</div></section>
+
+<section class="sec "><div class="wrap stack">
+<div class="head"><h2>Customers follow each category and each brand over time.</h2><p class="lead">Two trend pages show where the money goes. A customer opens a category or a brand to see its history.</p></div>
+<div class="phones" style="max-width:980px">
+<figure class="phone"><img src="img/app/exp-cats.png" alt="Category trends screen" loading="lazy"><figcaption><b>Category trends</b><span>Top categories with spend and share of spend.</span></figcaption></figure>
+<figure class="phone"><img src="img/app/exp-brands.png" alt="Brand trends screen" loading="lazy"><figcaption><b>Brand trends</b><span>Spend for each day and the top brands.</span></figcaption></figure>
+<figure class="phone"><img src="img/app/exp-brand.png" alt="One brand screen" loading="lazy"><figcaption><b>One brand</b><span>Six months of spend with that brand.</span></figcaption></figure>
+</div><p class="small">Screens from the Lune SDK with sample data.</p>
+</div></section>
+
+<section class="sec sec--white"><div class="wrap stack">
+<div class="head"><h2>Customers see their spend and plan their month.</h2></div>
+<div class="cols cols--4">
+<div class="card"><h3>Spend by category</h3><p>For this month, last month, the last three months or this year.</p></div>
+<div class="card"><h3>Search and filter</h3><p>Search by merchant, category or amount. Filter the list by category or tag.</p></div>
+<div class="card"><h3>Budgets</h3><p>Budgets by category or in total, with progress for the month.</p></div>
+<div class="card"><h3>Feedback</h3><p>A customer can report a wrong merchant or category on a transaction.</p></div>
+</div>
+</div></section>
+
+<section class="sec "><div class="wrap stack">
+<div class="head"><h2>Native screens for iOS and Android.</h2></div><div class="cols">
+<div class="card"><h3>Your look</h3><p>Your colours, light and dark mode, and your currency.</p></div>
+<div class="card"><h3>Two platforms</h3><p>Native SDKs for iOS and Android.</p></div>
+<div class="card"><h3>Enriched by default</h3><p>Each transaction shows the merchant name, logo and category from Lune Enrich.</p></div>
+</div>
+</div></section>
+
+<section class="sec"><div class="wrap"><div class="cta"><h2>See Expenses in a sample bank app.</h2><div class="cta__end"><p>Contact sales for a live demo of Expenses on sample data.</p>
+<div class="btns"><a class="btn btn--ink" href="contact.html">Talk to us</a><a class="btn btn--ghost-ink" href="https://docs.lunedata.io/pfm-sdk/" target="_blank" rel="noopener">SDK docs ↗</a></div></div></div></div></section>
+
+</main>
+<footer class="site-foot">
+  <div class="wrap site-foot__grid">
+    <div><a class="brand" href="index.html" style="font-size:20px"><i style="width:24px;height:24px;box-shadow:inset -6px 0 0 #10A37F"></i>Lune</a><span class="muted" style="min-height:36px">© 2026 Lune Technologies</span>
+      <a href="https://www.lunedata.io/lune-privacy">Privacy policy</a><a href="https://www.lunedata.io/terms">Terms</a></div>
+    <div><b>Enrichment</b><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html">Expenses</a><a href="cashflow.html">Cashflow</a></div>
+    <div><b>Pulse</b><a href="pulse.html#how">How Pulse works</a><a href="pulse.html#merchant">For merchants</a><a href="pulse.html#bank">For banks</a><a href="pulse.html#customer">For cardholders</a></div>
+    <div><b>Company</b><a href="platform.html">How the products fit</a><a href="customers.html">Customers</a><a href="contact.html">Contact sales</a></div>
+    <div><b>Developers</b><a href="https://docs.lunedata.io/enrichment/enrichment-api" target="_blank" rel="noopener">Enrichment API ↗</a><a href="https://docs.lunedata.io/pfm-sdk/" target="_blank" rel="noopener">Mobile SDK ↗</a><a href="https://lunehub.lunedata.io/auth/login">Log in to LuneHub</a></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+<script src="motion.js"></script>
+</body>
+</html>
