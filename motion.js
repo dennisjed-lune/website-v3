@@ -39,7 +39,7 @@
     opts.addEventListener('click', e => {
       const b = e.target.closest('button[data-hero]');
       if (!b) return;
-      show(b.dataset.hero); store.set('lune-hero', b.dataset.hero);
+      show(b.dataset.hero); store.set('lune-hero-2', b.dataset.hero);
       window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
     });
   }
