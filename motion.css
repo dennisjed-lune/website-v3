@@ -379,3 +379,6 @@ html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary
 .aiq .ai__tx, .aiq .ai__cmp { border: 0; font-size: 14px; } .aiq .ai__tx em { font-size: 13px; }
 .aiq .ai__btn { cursor: default; }
 .serif--keep { display: inline-block; }
+/* Chapter heads have no tag row. The split head keeps the heading left and the lead right. */
+.chead--split h2 { grid-column: 1; grid-row: 1; } .chead--split .lead { grid-column: 2; grid-row: 1; }
+@media (max-width: 760px) { .chead--split .lead { grid-column: 1; grid-row: auto; } }

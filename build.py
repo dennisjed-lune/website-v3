@@ -255,21 +255,21 @@ HOME = f"""<section class="hero hero--v">{M.heroes(HERO_BTNS)}
 
 <div class="journey">
 {chapter("enrich", "The foundation", 'Each card payment gets <span class="serif">a name your customer knows.</span>',
- "Enrich returns the merchant name, the logo and the category.",
+ "Enrich returns the merchant name, the logo and the category. Each other product uses this result.",
  ("enrich.html", "See how Enrich works"), M.ENRICH_STAGE, "sec--white")}
 
 {chapter("lunehub", "Comes with Enrich", "Your team sees each enriched transaction in LuneHub.",
- "LuneHub is the Lune portal for your bank's teams.",
+ "LuneHub is the Lune portal for your bank's teams. It comes with Enrich.",
  ("enrich.html", "See LuneHub on the Enrich page"), '<div data-plx="0.05">' + shot("lunehub-transactions.jpg", "LuneHub · Transactions", "The Transactions page in LuneHub. " + TEST, "LuneHub transactions list with raw description, brand and category") + "</div>")}
 
 {chapter("analytics", "Comes with LuneHub", "Find the merchants where your customers spend most.",
- "Analytics shows spend by brand, category and customer.",
+ "Analytics shows spend by brand, category and customer. It comes with LuneHub.",
  ("analytics.html", "See all Analytics screens"), M.ANALYTICS_STAGE, "sec--white")}
 
-{sec(M.chapter_head("Separate SDKs for your app", "Your customers see where their money goes.", "Expenses and Cashflow add ready screens to your iOS and Android app.", " chead--split") + APP, "chapter", "app")}
+{sec(M.chapter_head("Separate SDKs for your app", "Your customers see where their money goes.", "Expenses and Cashflow add ready screens to your iOS and Android app. Each one is a separate SDK.", " chead--split") + APP, "chapter", "app")}
 
 {chapter("pulse", "A separate product", 'Merchants pay to reward <span class="serif">your customers.</span>',
- "Pulse is a rewards programme under your bank's name. Merchants fund each offer.",
+ "Pulse is a separate product. It is a rewards programme under your bank's name, and merchants fund each offer.",
  ("pulse.html", "See how Pulse works"), M.PULSE_STAGE, "sec--ink")}
 </div>
 

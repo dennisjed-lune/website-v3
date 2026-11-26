@@ -258,7 +258,7 @@ RAIL = ('<nav class="rail" aria-label="The Lune flow"><div class="wrap rail__row
 
 
 def chapter_head(tag, h2, lead, cls=""):
-    return f'<div class="chead{cls}"><div class="chead__meta"><span class="chead__tag">{tag}</span></div><h2>{h2}</h2><p class="lead">{lead}</p></div>'
+    return f'<div class="chead{cls}"><h2>{h2}</h2><p class="lead">{lead}</p></div>'
 
 
 STACK = f'''<div class="fan">
@@ -266,9 +266,9 @@ STACK = f'''<div class="fan">
 <span class="fan__eg" aria-hidden="true"><code>POS PUR 448812 LVL SHS</code><i>↓</i><span><img src="{LOGO}levelshoes.png" alt=""><b>Level Shoes</b><em>Shopping › Clothing</em></span></span></a>
 <svg class="fan__lines" viewBox="0 0 100 300" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 C55 150 45 50 100 50"/><path d="M0 150 L100 150"/><path d="M0 150 C55 150 45 250 100 250"/></svg>
 <div class="fan__out">
-<a class="sm" href="#lunehub"><em class="sm__tag">Comes with Enrich</em><span class="sm__k">For your team</span><b>LuneHub</b><span>Transactions and Analytics.</span></a>
-<a class="sm" href="#app"><em class="sm__tag">Separate SDKs</em><span class="sm__k">For your customers</span><b>Expenses and Cashflow</b><span>Screens for your banking app.</span></a>
-<a class="sm sm--pulse" href="#pulse"><em class="sm__tag">Separate product</em><span class="sm__k">New revenue</span><b>Pulse</b><span>Merchants pay to reward your customers.</span></a>
+<a class="sm" href="#lunehub"><span class="sm__k">For your team</span><b>LuneHub</b><span>Transactions and Analytics.</span></a>
+<a class="sm" href="#app"><span class="sm__k">For your customers</span><b>Expenses and Cashflow</b><span>Screens for your banking app.</span></a>
+<a class="sm sm--pulse" href="#pulse"><span class="sm__k">New revenue</span><b>Pulse</b><span>Merchants pay to reward your customers.</span></a>
 </div>
 </div>'''
 
