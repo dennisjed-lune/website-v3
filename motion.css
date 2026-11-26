@@ -10,7 +10,7 @@
 /* ---- Hero options ---- */
 .hero--v { padding-top: 0; }
 .hv { display: none; }
-html:not([data-hero]) .hv--a, [data-hero="a"] .hv--a, [data-hero="b"] .hv--b, [data-hero="c"] .hv--c { display: block; }
+html:not([data-hero]) .hv--c, [data-hero="a"] .hv--a, [data-hero="b"] .hv--b, [data-hero="c"] .hv--c { display: block; }
 .hv .w { display: inline-block; animation: w-in .8s var(--ease-out) both; animation-delay: calc(var(--i) * 70ms); }
 .opts { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: 999px; background: var(--lune-ink); color: #fff; box-shadow: 0 12px 28px -10px rgba(7,3,18,.5); font-size: 13px; max-width: calc(100vw - 24px); }
 .opts > span { padding: 0 8px 0 12px; color: #B8B2C4; font-weight: 600; }
@@ -296,7 +296,7 @@ html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary
 
 /* client logos stay in the first view */
 .hero--v { display: grid; grid-template-rows: 1fr auto; min-height: calc(100svh - 73px); padding-bottom: clamp(16px, 2.4vh, 28px); box-sizing: border-box; }
-.hero--v .hv { align-content: center; } html:not([data-hero]) .hv--a, [data-hero="a"] .hv--a, [data-hero="b"] .hv--b, [data-hero="c"] .hv--c { display: grid; }
+.hero--v .hv { align-content: center; } html:not([data-hero]) .hv--c, [data-hero="a"] .hv--a, [data-hero="b"] .hv--b, [data-hero="c"] .hv--c { display: grid; }
 .hero--v .hv > .wrap { width: 100%; box-sizing: border-box; }
 .hero--v .logos { margin-top: clamp(14px, 2.4vh, 28px); gap: 10px; }
 .hero--v .logos__row img { height: clamp(34px, 5vh, 48px); }

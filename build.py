@@ -20,7 +20,7 @@ NAV = [("enrich.html", "Enrich"), ("analytics.html", "Analytics"), ("expenses.ht
        ("cashflow.html", "Cashflow"), ("pulse.html", "Pulse"), ("customers.html", "Customers")]
 
 # Sets the hero option before the page draws. The option comes from the address or from the last choice.
-BOOT = """<script>(function(){var d=document.documentElement,h='a';try{h=new URLSearchParams(location.search).get('hero')||localStorage.getItem('lune-hero')||'a'}catch(e){}d.dataset.hero=/^[abc]$/.test(h)?h:'a';var b='ink';try{b=new URLSearchParams(location.search).get('btn')||localStorage.getItem('lune-btn')||'ink'}catch(e){}d.dataset.btn=/^(ink|emerald|lime|coral)$/.test(b)?b:'ink';d.classList.add('js')})()</script>"""
+BOOT = """<script>(function(){var d=document.documentElement,h='c';try{h=new URLSearchParams(location.search).get('hero')||localStorage.getItem('lune-hero')||'c'}catch(e){}d.dataset.hero=/^[abc]$/.test(h)?h:'c';var b='ink';try{b=new URLSearchParams(location.search).get('btn')||localStorage.getItem('lune-btn')||'ink'}catch(e){}d.dataset.btn=/^(ink|emerald|coral)$/.test(b)?b:'ink';d.classList.add('js')})()</script>"""
 
 CLIENTS = [("adib.avif", "ADIB"), ("cbd.svg", "Commercial Bank of Dubai"), ("ajman-bank.png", "Ajman Bank"),
            ("nbf.avif", "National Bank of Fujairah"), ("uab.jpg", "United Arab Bank"), ("nbb.avif", "National Bank of Bahrain"),

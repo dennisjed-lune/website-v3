@@ -227,7 +227,7 @@ def heroes(btns):
     return hero_a(btns) + hero_b(btns) + hero_c(btns)
 
 
-OPTIONS = '''<div class="opts bopts" role="group" aria-label="Button colour"><span>Button</span><button type="button" data-btn="ink"><i style="background:#070312"></i>Ink</button><button type="button" data-btn="emerald"><i style="background:#10A37F"></i>Emerald</button><button type="button" data-btn="lime"><i style="background:#C6F24E"></i>Lime</button><button type="button" data-btn="coral"><i style="background:#FF7A59"></i>Coral</button></div>
+OPTIONS = '''<div class="opts bopts" role="group" aria-label="Button colour"><span>Button</span><button type="button" data-btn="ink"><i style="background:#070312"></i>Ink</button><button type="button" data-btn="emerald"><i style="background:#10A37F"></i>Emerald</button><button type="button" data-btn="coral"><i style="background:#FF7A59"></i>Coral</button></div>
 <div class="opts" role="group" aria-label="Design options"><span>Hero</span>
 <button type="button" data-hero="a" aria-pressed="true">Card in 3D</button><button type="button" data-hero="b" aria-pressed="false">Reveal</button><button type="button" data-hero="c" aria-pressed="false">Live feed</button></div>'''
 

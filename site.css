@@ -44,7 +44,6 @@ h3, .h3 { margin: 0; font-size: clamp(21px, 1.8vw, 26px); line-height: 1.2; lett
 /* One action colour. The review switch can change it through data-btn on <html>. */
 :root { --act-bg: var(--lune-ink); --act-fg: #fff; --act-hover: #241B3A; }
 [data-btn="emerald"] { --act-bg: #10A37F; --act-fg: var(--lune-ink); --act-hover: #0E9173; }
-[data-btn="lime"] { --act-bg: #C6F24E; --act-fg: var(--lune-ink); --act-hover: #B4E436; }
 [data-btn="coral"] { --act-bg: #FF7A59; --act-fg: var(--lune-ink); --act-hover: #F2684A; }
 .btn--primary, .btn--dark { background: var(--act-bg); color: var(--act-fg); }
 .btn--primary:hover, .btn--dark:hover { background: var(--act-hover); color: var(--act-fg); }

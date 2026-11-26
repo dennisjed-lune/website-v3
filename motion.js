@@ -35,7 +35,7 @@
       root.dataset.hero = h;
       opts.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.hero === h)));
     };
-    show(root.dataset.hero || 'a');
+    show(root.dataset.hero || 'c');
     opts.addEventListener('click', e => {
       const b = e.target.closest('button[data-hero]');
       if (!b) return;
