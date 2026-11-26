@@ -17,7 +17,7 @@ LUNEHUB = "https://lunehub.lunedata.io/auth/login"
 LIVE = "https://www.lunedata.io"
 
 NAV = [("enrich.html", "Enrich"), ("analytics.html", "Analytics"), ("expenses.html", "Expenses"),
-       ("cashflow.html", "Cashflow"), ("pulse.html", "Pulse"), ("customers.html", "Customers")]
+       ("cashflow.html", "Cashflow"), ("pulse.html", "Pulse"), ("ai.html", "AI assistant"), ("customers.html", "Customers")]
 
 # Sets the hero option before the page draws. The option comes from the address or from the last choice.
 BOOT = """<script>(function(){var d=document.documentElement,h='c';try{h=new URLSearchParams(location.search).get('hero')||localStorage.getItem('lune-hero-2')||'c'}catch(e){}d.dataset.hero=/^[abc]$/.test(h)?h:'c';var b='ink';try{b=new URLSearchParams(location.search).get('btn')||localStorage.getItem('lune-btn')||'ink'}catch(e){}d.dataset.btn=/^(ink|emerald|coral)$/.test(b)?b:'ink';d.classList.add('js')})()</script>"""
@@ -70,7 +70,7 @@ def page(slug, title, desc, body):
   <div class="wrap site-foot__grid">
     <div><a class="brand" href="index.html" style="font-size:20px"><i style="width:24px;height:24px;box-shadow:inset -6px 0 0 #10A37F"></i>Lune</a><span class="muted" style="min-height:36px">© 2026 Lune Technologies</span>
       <a href="{LIVE}/lune-privacy">Privacy policy</a><a href="{LIVE}/terms">Terms</a></div>
-    <div><b>Enrichment</b><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html">Expenses</a><a href="cashflow.html">Cashflow</a></div>
+    <div><b>Enrichment</b><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html">Expenses</a><a href="cashflow.html">Cashflow</a><a href="ai.html">AI assistant</a></div>
     <div><b>Pulse</b><a href="pulse.html#how">How Pulse works</a><a href="pulse.html#merchant">For merchants</a><a href="pulse.html#bank">For banks</a><a href="pulse.html#customer">For cardholders</a></div>
     <div><b>Company</b><a href="platform.html">How the products fit</a><a href="customers.html">Customers</a><a href="contact.html">Contact sales</a></div>
     <div><b>Developers</b><a href="{DOCS_API}" target="_blank" rel="noopener">Enrichment API ↗</a><a href="{DOCS_SDK}" target="_blank" rel="noopener">Mobile SDK ↗</a><a href="{LUNEHUB}">Log in to LuneHub</a></div>
@@ -446,6 +446,40 @@ CASHFLOW = f"""{hero("Cashflow", 'Show customers money in <span class="serif">ag
 {cta("See Cashflow in a sample bank app.", "Contact sales for a live demo of Cashflow on sample data.", BTN_SDK)}
 """
 
+# ------------------------------------------------------------------ AI ASSISTANT
+def aiq(q, a, extra):
+    return f'<div class="aiq"><p class="ai__q">{q}</p><p class="ai__a">{a}</p>{extra}</div>'
+
+
+AI_QS = ('<div class="cols cols--2 aiqs">'
+    + aiq("How much did I spend on shopping this month?", "You spent AED 1,840 on shopping this month.",
+          M.ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00") + M.ai_tx("zara.png", "Zara", "Shopping › Clothing", "AED 445.00"))
+    + aiq("Where do I spend the most?", "Your top two merchants this month:",
+          M.ai_tx("carrefour.png", "Carrefour", "Groceries › Supermarkets", "AED 1,240.00") + M.ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00"))
+    + aiq("Did I spend more than last month?", "No. You spent AED 187 less than last month.",
+          '<div class="ai__cmp"><span>This month</span><i style="--w:97%"></i><b>AED 6,808</b><span>Last month</span><i class="is-old" style="--w:100%"></i><b>AED 6,995</b></div>')
+    + aiq("Are there offers for me?", "Yes. You spent AED 1,032 at Level Shoes this month.",
+          M.ai_offer('<span class="ai__btn">Activate offer</span>'))
+    + '</div><p class="small">Illustrations of the assistant with sample data.</p>')
+AI_CARDS = ('<div class="cols cols--4">'
+    + card("", "In your app", "The assistant runs in the Lune SDK, inside Expenses and Cashflow. It uses your colours.")
+    + card("", "The customer's own data", "Each answer comes from that customer's enriched transactions.")
+    + card("", "Offers you approve", "The assistant shows Pulse offers. Your bank approves each offer.")
+    + card("", "Merchant-funded rewards", "The merchant funds each reward. Your bank uses no rewards budget.")
+    + '</div>')
+AI_H1 = 'Customers ask about their money. <span class="serif">The assistant answers.</span>'
+AI_H2 = 'Each question gets an answer <span class="serif">from real payments.</span>'
+
+AI = f"""{hero("AI assistant", AI_H1,
+ "A conversational assistant runs inside Expenses and Cashflow in your app. It answers from the customer's enriched transactions and shows Pulse offers that match their spend.", BTN_TALK + BTN_SDK, M.AI_STAGE)}
+
+{sec(head("", AI_H2) + AI_QS, "sec--white", "questions")}
+
+{sec(head("", "The assistant uses products your bank controls.") + AI_CARDS, "", "bank")}
+
+{cta("See the AI assistant in a sample bank app.", "Contact sales for a live demo of the assistant on sample data.", BTN_SDK)}
+"""
+
 # ------------------------------------------------------------------ PULSE
 PULSE_H1 = "Rewards under your bank's name. " + '<span class="serif">Merchants pay.</span>'
 BTN_HOW = '<a class="btn btn--ghost" href="#how">See how it works</a>'
@@ -639,6 +673,7 @@ PAGES = [
     ("expenses.html", "Expenses | Spending screens for your app | Lune", "Expenses adds ready spending screens to your iOS and Android app.", EXPENSES),
     ("cashflow.html", "Cashflow | Money in against money out | Lune", "Cashflow adds ready screens to your iOS and Android app.", CASHFLOW),
     ("pulse.html", "Pulse | Merchant-funded rewards under your bank's name | Lune", "Pulse is a rewards programme for your customers. Merchants fund the offers. Your bank approves them.", PULSE),
+    ("ai.html", "AI assistant | Answers from enriched transactions | Lune", "A conversational assistant inside Expenses and Cashflow. It answers from enriched transactions and shows Pulse offers.", AI),
     ("customers.html", "Customers | Banks and fintechs on Lune", "Case studies from ADIB, D360 Bank, National Bank of Fujairah, Beyon Money and Alaan.", CUSTOMERS),
     ("contact.html", "Contact sales | Lune", "Talk to the Lune sales team about a live demo.", CONTACT),
     ("platform.html", "How the Lune products fit together | Lune", "Start with Enrich. Add Expenses, Cashflow and Pulse when you need them.", PLATFORM),

@@ -172,6 +172,26 @@ PULSE_2 = anim("tiers", 2, "1300,1000,1000,1000,1500,3000", (
 PULSE_STAGE = stage("pulse", "Pulse · in your banking app", ("Cashback", "Tiers and missions"), PULSE_1, PULSE_2,
                     "Animation: a customer activates an offer, pays by card and earns cashback, then reaches a higher tier")
 
+# ------------------------------------------------------------------ AI ASSISTANT
+def ai_tx(logo, name, cat, amt, at=""):
+    return f'<div class="ai__tx"{at}><img src="{LOGO}{logo}" alt=""><span><b>{name}</b><em>{cat}</em></span><b>{amt}</b></div>'
+
+
+def ai_offer(btn, at=""):
+    return f'<div class="ai__offer"{at}><span>Offer for you</span><b>10% cashback</b><em>At Level Shoes, with your card</em>{btn}</div>'
+
+
+AI_CHAT = anim("chat", 1, "900,1300,1300,1500,1300,3200", (
+    '<div class="ph ph--chat"><div class="ph__top"><b>Assistant</b><span>Expenses</span></div>'
+    '<p class="ai__q" data-at="0">How much did I spend on shopping this month?</p>'
+    '<p class="ai__a" data-at="1">You spent AED 1,840 on shopping this month.</p>'
+    + ai_tx("levelshoes.png", "Level Shoes", "Shopping › Clothing", "AED 1,032.00", ' data-at="2"')
+    + ai_tx("zara.png", "Zara", "Shopping › Clothing", "AED 445.00", ' data-at="2"')
+    + ai_offer('<span class="ai__btns"><span class="ai__btn" data-at="3" data-until="4">Activate offer</span><span class="ai__btn ai__btn--done" data-at="4">Offer activated ✓</span></span>', ' data-at="3"')
+    + '<p class="ai__a" data-at="5">Done. Pay with your card at Level Shoes to earn the cashback.</p></div>'), rest=5)
+AI_STAGE = solo_stage("ai", "Assistant in the Lune SDK", AI_CHAT,
+                      "Animation: a customer asks about shopping spend. The assistant answers with merchants and shows a cashback offer")
+
 STAGES = {"enrich": ENRICH_STAGE, "analytics": ANALYTICS_STAGE, "expenses": EXPENSES_STAGE, "cashflow": CASHFLOW_STAGE, "pulse": PULSE_STAGE}
 
 # ------------------------------------------------------------------ HEROES
