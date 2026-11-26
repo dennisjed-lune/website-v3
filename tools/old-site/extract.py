@@ -1,7 +1,7 @@
 """Read the saved pages of the old lunedata.io site and write content.json.
 
 Run: python3 tools/old-site/extract.py
-Input: tools/old-site/raw/*.html (blog posts and case studies, saved from www.lunedata.io).
+Input: tools/old-site/raw/*.html (blog posts, case studies and legal pages, saved from www.lunedata.io).
 Output: tools/old-site/content.json, used by build.py for blog/ and case-studies/.
 The text stays as published on the old site, so the pages keep their search value.
 """
@@ -132,6 +132,20 @@ def case(slug, s):
             "seo_desc": meta(s, "name", "description"), "body": clean(rest)}
 
 
+LEGAL = ["terms", "lune-privacy", "cookie", "msa", "msa-secan"]
+
+
+def legal(slug, s):
+    i = s.index("<h1")
+    title = text(re.search(r"<h1\b[^>]*>([\s\S]*?)</h1>", s[i:]).group(1))
+    j = s.index("w-richtext", i)
+    j = s.rindex("<div", 0, j)
+    intro = [t for t in (text(x) for x in re.findall(r"<(?:div|p)\b[^>]*>([^<]+)</(?:div|p)>", s[i:j])) if t]
+    return {"kind": "legal", "slug": slug, "title": title, "intro": intro,
+            "seo_title": text(re.search(r"<title>([\s\S]*?)</title>", s).group(1)),
+            "seo_desc": meta(s, "name", "description"), "body": clean(div_inner(s, j))}
+
+
 def main():
     out = {"blog": [], "case": []}
     order = [p.stem for p in (HERE / "raw").glob("*.html")]
@@ -144,8 +158,9 @@ def main():
     for slug in dict.fromkeys(re.findall(r'href="/case-studies/([^"#?]+)"', cindex)):
         s = (HERE / "raw" / f"case-studies__{slug}.html").read_text(encoding="utf-8")
         out["case"].append(case(slug, s))
+    out["legal"] = [legal(slug, (HERE / "raw" / f"legal__{slug}.html").read_text(encoding="utf-8")) for slug in LEGAL]
     (HERE / "content.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"{len(out['blog'])} posts, {len(out['case'])} case studies, {len(order)} files read")
+    print(f"{len(out['blog'])} posts, {len(out['case'])} case studies, {len(out['legal'])} legal pages, {len(order)} files read")
 
 
 if __name__ == "__main__":

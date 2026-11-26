@@ -71,7 +71,7 @@ def page(slug, title, desc, body, base="", canonical=""):
 <footer class="site-foot">
   <div class="wrap site-foot__grid">
     <div><a class="brand" href="index.html" style="font-size:20px"><i style="width:24px;height:24px;box-shadow:inset -6px 0 0 #10A37F"></i>Lune</a><span class="muted" style="min-height:36px">© 2026 Lune Technologies</span>
-      <a href="{LIVE}/lune-privacy">Privacy policy</a><a href="{LIVE}/terms">Terms</a></div>
+      <a href="lune-privacy/">Privacy policy</a><a href="terms/">Terms</a><a href="cookie/">Cookie policy</a></div>
     <div><b>Enrichment</b><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html">Expenses</a><a href="cashflow.html">Cashflow</a><a href="ai.html">AI assistant</a></div>
     <div><b>Pulse</b><a href="pulse.html#how">How Pulse works</a><a href="pulse.html#merchant">For merchants</a><a href="pulse.html#bank">For banks</a><a href="pulse.html#customer">For cardholders</a></div>
     <div><b>Company</b><a href="customers.html">Customers</a><a href="blog/">Blog</a><a href="contact.html">Contact sales</a></div>
@@ -669,6 +669,8 @@ def old_links(body):
                 return f'href="{pre[1:]}{h[len(pre):].strip("/")}/"'
         if h in ("/", ""):
             return 'href="index.html"'
+        if h.strip("/") in ("terms", "lune-privacy", "cookie", "msa", "msa-secan"):
+            return f'href="{h.strip("/")}/"'
         if h.startswith("/contact"):
             return 'href="contact.html"'
         if h.startswith("/"):
@@ -721,8 +723,17 @@ def case_page(c):
 {cta("Your bank can be the next case study.", "Contact sales for a live demo on sample data, then on a sample of your own transactions.")}"""
 
 
+def legal_page(l):
+    intro = "".join(f'<p class="{"post__date" if i == 0 else "lead"}">{e(t)}</p>' for i, t in enumerate(l["intro"]))
+    return f"""<article class="post post--legal"><div class="wrap post__head">
+<h1 class="h1--page">{e(l["title"])}</h1>{intro}
+</div>
+<div class="wrap"><div class="prose prose--legal">{old_links(l["body"])}</div></div></article>"""
+
+
 OLD_PAGES = ([("blog/index.html", "Blog | Lune", "Insights on financial data enrichment and fintech trends from Lune.", blog_index(), "../", f"{LIVE}/blog")]
     + [(f"blog/{p['slug']}/index.html", p["seo_title"], p["seo_desc"] or p["summary"], blog_post(p), "../../", f"{LIVE}/blog/{p['slug']}") for p in OLD["blog"]]
+    + [(f"{l['slug']}/index.html", l["seo_title"], l["seo_desc"] or l["title"], legal_page(l), "../", f"{LIVE}/{l['slug']}") for l in OLD["legal"]]
     + [(f"case-studies/{c['slug']}/index.html", c["seo_title"], c["seo_desc"], case_page(c), "../../", f"{LIVE}/case-studies/{c['slug']}") for c in OLD["case"]])
 
 PAGES = [
@@ -764,7 +775,7 @@ if __name__ == "__main__":
         (ROOT / slug).write_text(out, encoding="utf-8")
         if not rest:
             bad += ste_check(slug, body)
-        for src in set(re.findall(r'(?:src|href)="((?:img|ds)/[^"]+|[a-z-]+\.(?:html|css|js)|(?:blog|case-studies)/[a-z0-9-]*/?)(?:#[^"]*)?"', out)):
+        for src in set(re.findall(r'(?:src|href)="((?:img|ds)/[^"]+|[a-z-]+\.(?:html|css|js)|(?:blog|case-studies)/[a-z0-9-]*/?|[a-z-]+/)(?:#[^"]*)?"', out)):
             src = src + "index.html" if src.endswith("/") else src
             if not (ROOT / src).exists():
                 print(f"  MISSING {slug}: {src}"); bad += 1
