@@ -74,13 +74,17 @@ body:has(.opts) .site-foot { padding-bottom: 156px; }
 .band-x__wipe { position: absolute; top: 0; bottom: 0; width: 22%; left: -30%; transform: skewX(-24deg); background: repeating-linear-gradient(90deg, var(--lune-emerald) 0 22px, transparent 22px 40px); animation: wipe 8s cubic-bezier(.5, 0, .2, 1) infinite; mix-blend-mode: screen; pointer-events: none; }
 
 /* Hero C: live feed */
-.hv--c { background: var(--lune-ink); color: #fff; padding: clamp(48px, 7vw, 96px) 0 clamp(48px, 6vw, 72px); }
-.hv--c h1 { color: #fff; } .hv--c .serif { color: var(--lune-mint); } .hv--c .lead { color: #B8B2C4; }
-.hv--c .btn--ghost { color: #fff; border-color: rgba(255,255,255,.3); }
-html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary { background: #fff; color: var(--lune-ink); }
+/* Light: the CEO prefers light backgrounds (26 Nov). */
+.hv--c { background: radial-gradient(70% 90% at 80% 45%, #DDF3E8 0%, rgba(221,243,232,0) 65%); padding: clamp(48px, 7vw, 96px) 0 clamp(48px, 6vw, 72px); }
 .feed-wrap { perspective: 1400px; min-width: 0; }
-.hv--c .feed { background: #110B22; border: 1px solid rgba(255,255,255,.1); transform: rotateY(-7deg) rotateX(3deg); box-shadow: 0 40px 80px -30px rgba(16,163,127,.45); animation: rise 1s var(--ease-out) backwards; }
-[data-hero="c"] .hero--v .logos { background: var(--neutral-25); }
+.hv--c .feed { background: #fff; color: var(--lune-teal); border: 1px solid var(--neutral-100); transform: rotateY(-7deg) rotateX(3deg); box-shadow: 0 40px 70px -34px rgba(0,46,42,.32), 0 2px 6px rgba(0,46,42,.05); animation: rise 1s var(--ease-out) backwards; }
+.hv--c .feed__live { color: #0A7A5C; } .hv--c .feed__live::before { background: var(--lune-emerald); }
+.hv--c .feed__count, .hv--c .feed__note { color: var(--neutral-500); }
+.hv--c .tx { background: var(--neutral-25); border-color: var(--neutral-100); }
+.hv--c .tx--top { background: #E4F6EC; border-color: #A8DEC4; }
+.hv--c .tx__raw b, .hv--c .tx__amt--raw { color: var(--neutral-700); } .hv--c .tx__raw span, .hv--c .tx__meta { color: var(--neutral-500); }
+.hv--c .tx__who img { border: 1px solid var(--neutral-100); }
+.hv--c .tx__offer { background: #DDF5E6; color: #0A5A3C; }
 
 /* ---- Stage and animation base ---- */
 .stage { margin: 0; display: grid; gap: 12px; min-width: 0; }
@@ -382,3 +386,4 @@ html:not([data-btn]) .hv--c .btn--primary, [data-btn="ink"] .hv--c .btn--primary
 /* Chapter heads have no tag row. The split head keeps the heading left and the lead right. */
 .chead--split h2 { grid-column: 1; grid-row: 1; } .chead--split .lead { grid-column: 2; grid-row: 1; }
 @media (max-width: 760px) { .chead--split .lead { grid-column: 1; grid-row: auto; } }
+.hv--c .tx__meta span[style] { filter: brightness(.72) saturate(1.15); } /* category colours are tuned for dark rows. Darker on white keeps the contrast. */
