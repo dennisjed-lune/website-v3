@@ -32,16 +32,18 @@ e = html.escape
 
 
 # ------------------------------------------------------------------ components
-def page(slug, title, desc, body):
+def page(slug, title, desc, body, base="", canonical=""):
     cur = ' aria-current="page"'
     nav = "".join(f'<a href="{h}"{cur if h == slug else ""}>{t}</a>' for h, t in NAV)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
+{f'<base href="{base}">' if base else ""}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
+{f'<link rel="canonical" href="{canonical}">' if canonical else ""}
 <link rel="stylesheet" href="ds/tokens/fonts.css">
 <link rel="stylesheet" href="ds/tokens/colors.css">
 <link rel="stylesheet" href="ds/tokens/typography.css">
@@ -72,7 +74,7 @@ def page(slug, title, desc, body):
       <a href="{LIVE}/lune-privacy">Privacy policy</a><a href="{LIVE}/terms">Terms</a></div>
     <div><b>Enrichment</b><a href="enrich.html">Enrich</a><a href="analytics.html">Analytics</a><a href="expenses.html">Expenses</a><a href="cashflow.html">Cashflow</a><a href="ai.html">AI assistant</a></div>
     <div><b>Pulse</b><a href="pulse.html#how">How Pulse works</a><a href="pulse.html#merchant">For merchants</a><a href="pulse.html#bank">For banks</a><a href="pulse.html#customer">For cardholders</a></div>
-    <div><b>Company</b><a href="platform.html">How the products fit</a><a href="customers.html">Customers</a><a href="contact.html">Contact sales</a></div>
+    <div><b>Company</b><a href="customers.html">Customers</a><a href="blog/">Blog</a><a href="contact.html">Contact sales</a></div>
     <div><b>Developers</b><a href="{DOCS_API}" target="_blank" rel="noopener">Enrichment API ↗</a><a href="{DOCS_SDK}" target="_blank" rel="noopener">Mobile SDK ↗</a><a href="{LUNEHUB}">Log in to LuneHub</a></div>
   </div>
 </footer>
@@ -251,7 +253,7 @@ HOME = f"""<section class="hero hero--v">{M.heroes(HERO_BTNS)}
 
 {sec(head("", 'Card data can grow your revenue. Today, most of it is <span class="serif">unreadable.</span>') + POINTS, "sec--teal", "problem")}
 
-{sec(head("", 'Lune reads each card payment. <span class="serif">Then the data earns.</span>', "Start with Enrich. Add the other products when you need them.") + M.STACK + '<a class="more" href="platform.html">See how the products fit together →</a>', "", "solution")}
+{sec(head("", 'Lune reads each card payment. <span class="serif">Then the data earns.</span>', "Start with Enrich. Add the other products when you need them.") + M.STACK, "", "solution")}
 
 <div class="journey">
 {chapter("enrich", "The foundation", 'Each card payment gets <span class="serif">a name your customer knows.</span>',
@@ -599,13 +601,16 @@ STUDIES = [
 ]
 
 
+CASE_SLUG = {"adib": "abu-dhabi-islamic-bank", "d360": "d360-bank", "nbf": "national-bank-of-fujairah", "beyon-money": "beyon-money", "alaan": "alaan-pay"}
+
+
 def study(s):
     sid, logo, name, kind, title, dl, ch, dv, out, quote = s
     d = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in dl)
     q = f'<p style="font-weight:600;font-size:22px;line-height:1.3;letter-spacing:-0.02em;color:var(--lune-teal)">{quote}</p>' if quote else ""
     return f"""<article class="card study" id="{sid}"><img class="logo" src="img/clients/{logo}" alt="{e(name)}"><span class="tag">{kind}</span><h3 class="h2" style="font-size:clamp(24px,2.4vw,34px)">{title}</h3>
 <dl>{d}</dl><div class="cols"><div><h4 style="margin:0 0 6px">The challenge</h4><p>{ch}</p></div><div><h4 style="margin:0 0 6px">What Lune delivered</h4><p>{dv}</p></div>
-<div><h4 style="margin:0 0 6px">The outcome</h4>{facts([(o, "") for o in out])}</div></div>{q}</article>"""
+<div><h4 style="margin:0 0 6px">The outcome</h4>{facts([(o, "") for o in out])}</div></div>{q}<a class="more" href="case-studies/{CASE_SLUG[sid]}/">Read the full case study →</a></article>"""
 
 
 CUSTOMERS = f"""{hero("Customers", 'Banks and fintechs that <span class="serif">run on Lune data.</span>',
@@ -648,23 +653,77 @@ CONTACT = f"""{hero("Contact sales", 'Talk to our sales team about <span class="
 </div></div>''')}
 """
 
-PLAT_CARDS = '<div class="cols">' + "".join([
-    card("Step 1", "Enrich", "The enrichment API. It returns the merchant name, the logo and the category for each card payment.", ["LuneHub, the portal for your team", "The Transactions page", "Analytics"], link=("enrich.html", "See Enrich")),
-    card("Comes with LuneHub", "Analytics", "The Brand explorer, the Category explorer and the spend dashboard.", ["Spend by brand", "Spend by category", "Spend per customer"], link=("analytics.html", "See Analytics")),
-    card("Step 2", "Expenses", "Spending screens for your banking app.", ["Lune SDK for iOS and Android", "Your bank's name and colour"], link=("expenses.html", "See Expenses")),
-    card("Step 2", "Cashflow", "Money in and money out screens for your banking app.", ["Lune SDK for iOS and Android", "Your bank's name and colour"], link=("cashflow.html", "See Cashflow")),
-    card("Step 3", "Pulse", "A rewards programme that merchants fund.", ["Pulse SDK for your app", "Offer approval in LuneHub", "A portal for merchants"], link=("pulse.html", "See Pulse")),
-]) + "</div>"
-PLAT_H1 = 'Start with Enrich. <span class="serif">Add the others when you need them.</span>'
-PLATFORM = f"""{hero("", PLAT_H1,
- "Lune has five products. Each one runs on the same enriched transactions, so each new product uses the data you already have.", BTN_TALK)}
+# ------------------------------------------------------------------ BLOG AND CASE STUDIES (from the old site)
+# The text comes from www.lunedata.io as published, so search engines see the same pages.
+# tools/old-site/extract.py writes the content. The STE check does not apply to this old text.
+import json
+OLD = json.loads((ROOT / "tools/old-site/content.json").read_text(encoding="utf-8"))
 
-{sec(head("", "Three steps. Each step uses the step before it.") + M.path(detail=True), "sec--white")}
 
-{sec(head("", "Each product, and what comes with it.") + PLAT_CARDS)}
+def old_links(body):
+    """Point links of the old site to the pages of this site."""
+    def fix(m):
+        h = m.group(1)
+        for pre in ("/blog/", "/case-studies/"):
+            if h.startswith(pre):
+                return f'href="{pre[1:]}{h[len(pre):].strip("/")}/"'
+        if h in ("/", ""):
+            return 'href="index.html"'
+        if h.startswith("/contact"):
+            return 'href="contact.html"'
+        if h.startswith("/"):
+            return f'href="{LIVE}{h}" target="_blank" rel="noopener"'
+        return m.group(0)
+    return re.sub(r'href="([^"]*)"', fix, body)
 
-{cta("See which products fit your bank.", "Contact sales for a live demo. We show Lune on sample data, then on a sample of your own transactions.")}
-"""
+
+def post_card(p, big=False):
+    return (f'<a class="post-card{" post-card--big" if big else ""}" href="blog/{p["slug"]}/">'
+            f'<span class="post-card__img"><img src="{e(p["image"])}" alt="" loading="lazy"></span>'
+            f'<span class="post-card__date">{e(p["date"])}</span><b>{e(p["title"])}</b>'
+            + (f'<span class="post-card__sum">{e(p["summary"])}</span>' if big and p["summary"] else "") + "</a>")
+
+
+def blog_index():
+    ps = OLD["blog"]
+    return f"""<section class="hero hero--post"><div class="wrap"><h1 class="h1--page">Blog</h1>
+<p class="lead">Notes on card data, enrichment and digital banking.</p></div></section>
+{sec(post_card(ps[0], True) + '<div class="post-grid">' + "".join(post_card(p) for p in ps[1:]) + "</div>", "sec--tight")}
+{cta("See what your card transactions can earn.", "Contact sales for a live demo on sample data, then on a sample of your own transactions.")}"""
+
+
+def blog_post(p):
+    i = OLD["blog"].index(p)
+    more = [q for q in OLD["blog"] if q is not p][:3] if i > 2 else [q for q in OLD["blog"] if q is not p][3:6]
+    return f"""<article class="post"><div class="wrap post__head">
+<a class="post__back" href="blog/">← All posts</a>
+<p class="post__date">{e(p["date"])}</p>
+<h1 class="h1--page">{e(p["title"])}</h1>
+{f'<p class="lead">{e(p["summary"])}</p>' if p["summary"] else ""}
+</div>
+<div class="wrap"><figure class="post__img"><img src="{e(p["image"])}" alt=""></figure></div>
+<div class="wrap"><div class="prose">{old_links(p["body"])}</div></div></article>
+{sec('<div class="head"><h2>More from the blog</h2></div><div class="post-grid">' + "".join(post_card(q) for q in more) + "</div>", "sec--tight")}
+{cta("See what your card transactions can earn.", "Contact sales for a live demo on sample data, then on a sample of your own transactions.")}"""
+
+
+def case_page(c):
+    others = [x for x in OLD["case"] if x is not c]
+    links = "".join(f'<a class="case" href="case-studies/{x["slug"]}/"><b>{e(x["title"])} →</b></a>' for x in others[:2])
+    lead = f'<p class="lead">{e(c["kicker"])}</p>' if c["kicker"] else ""
+    return f"""<article class="post"><div class="wrap post__head">
+<a class="post__back" href="customers.html">← All customers</a>
+<h1 class="h1--page">{e(c["title"])}</h1>{lead}
+</div>
+<div class="wrap"><figure class="post__img post__img--case"><img src="{e(c["image"])}" alt="{e(c["name"])}"></figure></div>
+<div class="wrap"><div class="prose">{old_links(c["body"])}</div></div></article>
+{sec('<div class="head"><h2>More case studies</h2></div><div class="cols cols--2">' + links + "</div>", "sec--tight")}
+{cta("Your bank can be the next case study.", "Contact sales for a live demo on sample data, then on a sample of your own transactions.")}"""
+
+
+OLD_PAGES = ([("blog/index.html", "Blog | Lune", "Insights on financial data enrichment and fintech trends from Lune.", blog_index(), "../", f"{LIVE}/blog")]
+    + [(f"blog/{p['slug']}/index.html", p["seo_title"], p["seo_desc"] or p["summary"], blog_post(p), "../../", f"{LIVE}/blog/{p['slug']}") for p in OLD["blog"]]
+    + [(f"case-studies/{c['slug']}/index.html", c["seo_title"], c["seo_desc"], case_page(c), "../../", f"{LIVE}/case-studies/{c['slug']}") for c in OLD["case"]])
 
 PAGES = [
     ("index.html", "Lune | More card revenue from every transaction", "Lune turns the card transactions you already process into new revenue. Know where your customers spend, and let merchants pay to reach them.", HOME),
@@ -676,7 +735,6 @@ PAGES = [
     ("ai.html", "AI assistant | Answers from enriched transactions | Lune", "A conversational assistant inside Expenses and Cashflow. It answers from enriched transactions and shows Pulse offers.", AI),
     ("customers.html", "Customers | Banks and fintechs on Lune", "Case studies from ADIB, D360 Bank, National Bank of Fujairah, Beyon Money and Alaan.", CUSTOMERS),
     ("contact.html", "Contact sales | Lune", "Talk to the Lune sales team about a live demo.", CONTACT),
-    ("platform.html", "How the Lune products fit together | Lune", "Start with Enrich. Add Expenses, Cashflow and Pulse when you need them.", PLATFORM),
 ]
 
 
@@ -700,11 +758,15 @@ def ste_check(slug, body):
 
 if __name__ == "__main__":
     bad = 0
-    for slug, title, desc, body in PAGES:
-        (ROOT / slug).write_text(page(slug, title, desc, body), encoding="utf-8")
-        bad += ste_check(slug, body)
-        for src in set(re.findall(r'(?:src|href)="((?:img|ds)/[^"]+|[a-z-]+\.(?:html|css|js))(?:#[^"]*)?"', page(slug, title, desc, body))):
+    for slug, title, desc, body, *rest in PAGES + OLD_PAGES:
+        out = page(slug, title, desc, body, *rest)
+        (ROOT / slug).parent.mkdir(parents=True, exist_ok=True)
+        (ROOT / slug).write_text(out, encoding="utf-8")
+        if not rest:
+            bad += ste_check(slug, body)
+        for src in set(re.findall(r'(?:src|href)="((?:img|ds)/[^"]+|[a-z-]+\.(?:html|css|js)|(?:blog|case-studies)/[a-z0-9-]*/?)(?:#[^"]*)?"', out)):
+            src = src + "index.html" if src.endswith("/") else src
             if not (ROOT / src).exists():
                 print(f"  MISSING {slug}: {src}"); bad += 1
-    print(f"built {len(PAGES)} pages, {bad} issue(s)")
+    print(f"built {len(PAGES) + len(OLD_PAGES)} pages, {bad} issue(s)")
     sys.exit(1 if bad else 0)
